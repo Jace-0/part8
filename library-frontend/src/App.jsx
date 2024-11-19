@@ -8,7 +8,7 @@ import { BOOKS, BOOK_ADDED } from "./queries/queries";
 
 import {
   BrowserRouter as Router,
-  Routes, Route, Link
+  Routes, Route, Link, Navigate
 } from 'react-router-dom'
 import { useApolloClient, useQuery, useSubscription } from "@apollo/client";
 
@@ -73,7 +73,7 @@ const App = () => {
         <Route path='/' element={<Authors/>}></Route>
         <Route path='/books' element={<Books/>}></Route>
         <Route path='/add' element={<NewBook setError={notify}/>}></Route>
-        <Route path='/login' element={<LoginForm setError={notify} setToken={setToken}/>}></Route>
+        <Route path='/login' element={token ? <Navigate replace to="/" /> : <LoginForm setError={notify} setToken={setToken}/>}></Route>
         <Route path='/recommendation' element={<Recommedation/>}></Route>
       </Routes>
     </div>
